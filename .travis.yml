@@ -32,5 +32,5 @@ script:
 - docker build -t $REPOSITORY .
 after_success:
 - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-- docker tag $REPO:$COMMIT $REPO:latest
-- docker push $REPO
+- docker tag $REPOSITORY:$COMMIT $REPOSITORY:latest
+- docker push $REPOSITORY
