@@ -1,7 +1,7 @@
 FROM debian:wheezy
 
 RUN apt-get update
-RUN apt-get install -y -q unzip curl gcc make autoconf ncurses-dev python-pip
+RUN apt-get install -y -q git unzip curl gcc make autoconf ncurses-dev python-pip
 RUN pip install cram
 
 RUN curl -L https://github.com/zsh-users/zsh/archive/@VERSION@.zip > @VERSION@.zip
