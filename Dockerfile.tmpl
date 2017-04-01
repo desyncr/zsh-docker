@@ -17,6 +17,9 @@ RUN ./configure --without-tcsetpgrp
 RUN make
 RUN make install.bin install.modules install.fns || :
 
+RUN git config --global user.email test@test.test
+RUN git config --global user.name test
+
 WORKDIR /
 RUN rm @VERSION@.zip
 RUN rm -rf /usr/share/zsh
