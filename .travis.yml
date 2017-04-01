@@ -1,0 +1,44 @@
+sudo: false
+services:
+  - docker
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+    - secure: ""
+    - secure: ""
+    - secure: ""
+
+matrix:
+  include:
+    - os: linux
+      env: ZSH_VERSION=zsh-5.3.1
+
+    - os: linux
+      env: ZSH_VERSION=zsh-5.2
+
+    - os: linux
+      env: ZSH_VERSION=zsh-5.1.1
+
+    - os: linux
+      env: ZSH_VERSION=zsh-5.0.0
+
+    - os: linux
+      env: ZSH_VERSION=zsh-4.3.17
+
+    - os: linux
+      env: ZSH_VERSION=zsh-4.3.11
+
+before_script:
+  - uname -a
+  - docker --version
+  - REPOSITORY=desyncr/zsh-docker-$ZSH_VERSION
+
+script:
+  - make $ZSH_VERSION > Dockerfile
+  - docker build -t $REPOSITORY -f Dockerfile
+
+after_success:
+  - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
+  - docker tag $REPO:$COMMIT $REPO:latest
+  - docker push $REPO
+

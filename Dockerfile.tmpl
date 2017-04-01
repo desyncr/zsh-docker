@@ -1,0 +1,19 @@
+FROM debian:wheezy
+
+RUN apt-get update
+RUN apt-get install -y -q unzip curl gcc make autoconf ncurses-dev python-pip
+RUN pip install cram
+
+RUN curl -L https://github.com/zsh-users/zsh/archive/@VERSION@.zip > @VERSION@.zip
+RUN unzip @VERSION@.zip -d /usr/share/zsh 
+
+WORKDIR /usr/share/zsh/zsh-@VERSION@
+RUN ./Util/preconfig
+RUN ./configure --without-tcsetpgrp
+RUN make
+RUN make install.bin install.modules install.fns
+
+WORKDIR /
+RUN rm @VERSION@.zip
+RUN rm -rf /usr/share/zsh
+
