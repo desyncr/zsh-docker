@@ -8,6 +8,10 @@ RUN curl -L https://github.com/zsh-users/zsh/archive/@VERSION@.zip > @VERSION@.z
 RUN unzip @VERSION@.zip -d /usr/share/zsh 
 
 WORKDIR /usr/share/zsh/zsh-@VERSION@
+
+RUN rm -rf ./Doc
+RUN mkdir ./Doc && echo "all:\n\n" > ./Doc/Makefile.in
+
 RUN ./Util/preconfig
 RUN ./configure --without-tcsetpgrp
 RUN make
