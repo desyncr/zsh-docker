@@ -27,7 +27,7 @@ before_script:
 - docker --version
 - REPOSITORY=desyncr/zsh-docker-$ZSH_VERSION
 script:
-- make $ZSH_VERSION > Dockerfile
+- make build VERSION=$ZSH_VERSION 
 - docker build -t $REPOSITORY -f Dockerfile
 after_success:
 - docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
