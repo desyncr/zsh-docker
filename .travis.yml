@@ -12,9 +12,9 @@ env:
 matrix:
   include:
   - os: linux
-    env: zsh_version=zsh-5.3.1
+    env: ZSH_VERSION=zsh-5.3.1
   - os: linux
-    env: zsh_version=zsh-5.3
+    env: ZSH_VERSION=zsh-5.3
   - os: linux
     env: ZSH_VERSION=zsh-5.2
   - os: linux
