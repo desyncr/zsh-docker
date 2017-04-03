@@ -12,3 +12,5 @@ Tested with zsh versions:
 - 5.0.0
 - 4.3.17
 - 4.3.11
+
+For already built images see: https://hub.docker.com/u/desyncr/
