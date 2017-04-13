@@ -20,6 +20,7 @@ RUN make install.bin install.modules install.fns || :
 RUN git config --global user.email test@test.test
 RUN git config --global user.name test
 
+RUN mkdir ~/.ssh
 RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 WORKDIR /
