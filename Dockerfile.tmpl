@@ -22,6 +22,7 @@ RUN git config --global user.name test
 
 RUN mkdir ~/.ssh
 RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+RUN chmod u+rw,og-rwx ~/.ssh/config
 
 WORKDIR /
 RUN rm @VERSION@.zip
