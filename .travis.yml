@@ -11,6 +11,13 @@ env:
   - secure: WLE8KBDX98Y0jppEbfaP+DWMFoVEO0NhbIhxzAFgxmH1KwOAdXFSyNyF1cF2pceSkI5nP8bubsvHRxZcCxvWwDWEf1Rl743B9NPzK5tD12LY6LEU0Y2a7+koJHEYU2j4XzbxSLfBdRurlpx/DNryUnorVQI0Gas4+aBXtXMe5hKwGN3yAOFAbkrsXxnFKJIPvfOUhWMq9SA1Ss2N6zPJ6Sxd0dkaPQJ5LSOgKgmbnLThxA/F+qia1RYNR5rzfTbh0soc0G3MKWOFDicVJYhSqm8d7JXN66OckEzETSs0WuHMBvyV1w6vehvO5Hcm7GG12V2RWKakDOLwv4idfPfOrsFTwYFXBEZOfnbdBb+gx5V3qKVRZdDRGZjSZ0nBTa0Y58Bnkv2Z51YsOo5hnG4vXclEpl4l7yLj5BAaFcaKVwTFPJzflcvmr9Dfbn2raQmE5nORd4FY9TfiBaD/O1PpGSbGloN720jvrpC7tFN8lkW5XmNjJX6Jw1iaPmAACAo65zpZSN6OoH2qqBGD+VQ8FOK3GNPRiQPKNNno15izjvSat0hlMMDBxHU4BXRfjP7QsucLex1ay24xAArTySBbpk1nZi3kalvYuM//wt/Rqset8hHYvXZyLYFsZRNLvpdsBaQTqSbuQPlSKDe52NpBivxEg8JIIEEsAo2a6MSYuVA=
 matrix:
   include:
+  
+  - os: linux
+    env: ZSH_VERSION=zsh-5.4.2
+  - os: linux
+    env: ZSH_VERSION=zsh-5.4.1
+  - os: linux
+    env: ZSH_VERSION=zsh-5.4
   - os: linux
     env: ZSH_VERSION=zsh-5.3.1
   - os: linux
