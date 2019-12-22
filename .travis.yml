@@ -45,6 +45,6 @@ script:
 - make build VERSION=$ZSH_VERSION 
 - docker build -t $REPOSITORY .
 after_success:
-- docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
+- docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
 - docker tag $REPOSITORY:$COMMIT $REPOSITORY:latest
 - docker push $REPOSITORY
