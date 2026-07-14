@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        zsh:
+          - zsh-5.8
+          - zsh-5.7
+          - zsh-5.6
+          - zsh-5.5
+          - zsh-5.4.2
+          - zsh-5.4.1
+          - zsh-5.4
+          - zsh-5.3.1
+          - zsh-5.3
+          - zsh-5.2
+          - zsh-5.1.1
+          - zsh-5.0.0
+          - zsh-4.3.17
+          - zsh-4.3.11
+
+    env:
+      COMMIT: ${{ github.sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show versions
+        run: |
+          uname -a
+          docker --version
+
+      - name: Set repository
+        run: |
+          echo "REPOSITORY=desyncr/zsh-docker-${{ matrix.zsh }}" >> "$GITHUB_ENV"
+          echo "SHORT_SHA=${GITHUB_SHA::8}" >> "$GITHUB_ENV"
+
+      - name: Build image
+        run: |
+          make build VERSION=${{ matrix.zsh }}
+          docker build -t "$REPOSITORY" .
+
+      - name: Login to Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PASS }}
+
+      - name: Push image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          docker tag "$REPOSITORY" "$REPOSITORY:$SHORT_SHA"
+          docker tag "$REPOSITORY" "$REPOSITORY:latest"
+          docker push "$REPOSITORY:$SHORT_SHA"
+          docker push "$REPOSITORY:latest"
