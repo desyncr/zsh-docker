@@ -1,8 +1,9 @@
-FROM debian:jessie
+FROM debian:bookworm
 
 RUN apt-get update
-RUN apt-get install -y -q git unzip curl gcc make autoconf ncurses-dev python-pip
-RUN pip install cram
+RUN apt-get install -y -q git unzip curl gcc make autoconf ncurses-dev python3-pip python3.11-venv
+RUN python3 -m venv .venv
+RUN .venv/bin/pip install cram
 
 RUN curl -L https://github.com/zsh-users/zsh/archive/@VERSION@.zip > @VERSION@.zip
 RUN unzip @VERSION@.zip -d /usr/share/zsh 
