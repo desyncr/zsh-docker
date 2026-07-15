@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         zsh:
+          - zsh-5.9
           - zsh-5.8
           - zsh-5.7
           - zsh-5.6
