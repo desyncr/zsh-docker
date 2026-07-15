@@ -7,6 +7,7 @@ Deprecated! Use instead: https://github.com/zsh-users/zsh-docker
 
 Tested with zsh versions:
 
+- 5.9
 - 5.8
 - 5.7
 - 5.6
